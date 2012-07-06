@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /home/ubuntu/gitwork/misc-projects/bandonfews
-/usr/bin/python bandonfews2.py
+cd /home/ubuntu/gitwork/bandonfews
+/usr/bin/python bandonfews2_public.py
 

@@ -1,25 +1,19 @@
-The Bandon FEWS scraper uses a few different scripts and libraries some of which had to be patched to get OAuth2 working correctly.
+A simple command-line to scrape Bandon FEWS (Flood Early Warning System) at http://www.bandonfloodwarning.ie/ into Google Fusion Tables and COSM/Pachube
 
- sudo apt-get install subversion
+Once per hour it grabs the river level data from the Bandon FEWS site and stores it in Google Fusion Tables and COSM
 
-Initial code was from:  svn checkout http://fusion-tables-client-python.googlecode.com/svn/trunk/ fusion-tables-client-python-read-only 
+SETUP
+1. You need to setup Google API Access at https://code.google.com/apis/console/ and create a project there to get keys
+2. Rename client_secrets_sample.json to client_secrets.json and put those keys in client_secrets.json
+3. sudo pip install google-api-python-client
+4. First time you run it with --noauth_local_webserver to do the OAuth authentication which saves the credentials in plus.dat
+5. From then on it's just:    python bandonfews3.py
 
-This was then patched from here:http://code.google.com/p/fusion-tables-client-python/issues/detail?id=4 which I had to do manually and tweak due to versioning issues and then clean up the sample code from oauth_example.py which was the basis of it.
-
-I also had to install: sudo easy_install --upgrade google-api-python-client
-
-I did a hard-coded hack of  /usr/local/lib/python2.6/dist-packages/google_api_python_client-1.0beta6-py2.6.egg/oauth2client/tools.py  to set  'auth_local_webserver', False
-
-Obviously I setup a Project/App in the Google APIs Dashboard at https://code.google.com/apis/console/b/0/#project:1023347453927:access
-
-That gave me the key and secret which is hardcoded in.
-
-Data is then inserted (with checking for duplicates) into Google Fusion Tables here: https://www.google.com/fusiontables/DataSource?docid=103YIcARoxuaWT7NfZ8mVBzY554sF_3ONYC1N3DE
 
 2012/07/06
 Moved to a public repo and included the code to push data to Cosm/Pachube
 
-The two Cron Jobs are:
-05 * * * * /home/ubuntu/gitwork/bandonfews/bandonfews2.sh > /home/ubuntu/bandonfews.log
-*/15 * * * * /home/ubuntu/gitwork/bandonfews/fews2cosm.sh > /home/ubuntu/fews2cosm.log
+2012/12/07
+Switched to new Google API Python Client and new Fusion Tables API. Much simpler/cleaner installation
+
 

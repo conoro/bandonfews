@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /home/conor/gitwork/bandonfews
+cd /home/ubuntu/gitwork/bandonfews
 /usr/bin/python fews2cosm_public.py
 

@@ -135,21 +135,18 @@ def main(argv):
       out_time_format = "%d-%b-%Y %H:%M"
       datestring = time.strftime(out_time_format, datetime)
 
-
   # now connect to Fusion Tables
   service = build("fusiontables", "v1", http=http)
 
   try:
 
     # Check to see if we have already recorded this level/time combination
-    #querystring = "SELECT * FROM 103YIcARoxuaWT7NfZ8mVBzY554sF_3ONYC1N3DE WHERE datetime='07-Dec-2012 15:30'"
     querystring = "SELECT * FROM 103YIcARoxuaWT7NfZ8mVBzY554sF_3ONYC1N3DE WHERE datetime='%s'" % datestring
     outcome = service.query().sql(sql=querystring).execute()
     print outcome
     if ('rows' not in outcome):
       # Insert latest River Level and Time
-      #querystring = "INSERT INTO 103YIcARoxuaWT7NfZ8mVBzY554sF_3ONYC1N3DE (riverlevel, datetime) VALUES ('%s', '07-Dec-2012 15:30')" % riverlevel
-      querystring = "INSERT INTO 103YIcARoxuaWT7NfZ8mVBzY554sF_3ONYC1N3DE (riverlevel, datetime) VALUES ('%s', '%s')" % riverlevel, datestring
+      querystring = "INSERT INTO 103YIcARoxuaWT7NfZ8mVBzY554sF_3ONYC1N3DE (riverlevel, datetime) VALUES ('%s', '%s')" % (riverlevel, datestring)
       outcome = service.query().sql(sql=querystring).execute()
       print outcome
     else:

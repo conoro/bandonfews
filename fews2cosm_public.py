@@ -27,10 +27,6 @@ Usage:
 __author__ = 'cwjoneill@gmail.com (Conor O\'Neill)'
 
 
-from sql.sqlbuilder import SQL
-import ftclient
-from fileimport.fileimporter import CSVImporter
-
 import urllib
 import lxml.html
 from lxml.html.clean import clean_html
@@ -41,11 +37,6 @@ import sys, urllib2
 if __name__ == "__main__":
 
   import sys, getpass
-
-  consumer_key = 'insertyourshere'
-  consumer_secret = 'insertyourshere'
-
-  oauth_client = ftclient.OAuthFTClient(consumer_key, consumer_secret)
 
   url = 'http://www.bandonfloodwarning.ie/main.php'
   html = urllib.urlopen(url).read()

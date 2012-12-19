@@ -20,3 +20,7 @@ Moved to a public repo and included the code to push data to Cosm/Pachube
 Switched to new Google API Python Client and new Fusion Tables API. Much simpler/cleaner installation
 
 
+2012/12/19
+----------
+Found two idiotic bugs which means we are missing 12 days of data. Grrrr. Cleaned up Cosm code to remove older Google OAuth code.
+
